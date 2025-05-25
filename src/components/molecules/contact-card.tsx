@@ -1,5 +1,5 @@
-import { Heading } from "../atoms/Heading";
-import { Text } from "../atoms/Text";
+import { Heading } from "../atoms/heading";
+import { Text } from "../atoms/text";
 export function ContactCard({ location, phone, email }: { location: string; phone: string; email: string }) {
   return (
     <div className="space-y-1">

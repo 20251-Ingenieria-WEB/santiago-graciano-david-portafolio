@@ -18,7 +18,7 @@ export default {
         card: "0 2px 6px rgba(0,0,0,.15)",
       },
       borderRadius: {
-        xl2: "1.25rem",                       // ≈20px
+        xl2: "1.25rem",                
       },
     },
   },

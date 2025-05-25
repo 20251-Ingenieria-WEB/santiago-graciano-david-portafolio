@@ -1,16 +1,20 @@
-import ProfileSection from "../components/organisms/ProfileSection";
-import KnowledgeSection from "../components/organisms/KnowledgeSection";
-import EducationSection from "../components/organisms/EducationSection";
-import PortfolioSection from "../components/organisms/PortfolioSection";
-import FooterSection from "../components/organisms/FooterSection";
-export default function HomePage() {
+"use client"
+
+import MainLayout from "../components/templates/main-layout"
+import ProfileSection from "../components/organisms/profile-section"
+import KnowledgeSection from "../components/organisms/knowledge-section"
+import EducationSection from "../components/organisms/education-section"
+import PortfolioSection from "../components/organisms/portfolio-section"
+import FooterSection from "../components/organisms/footer-section"
+
+export default function Page() {
   return (
-    <>
-      <ProfileSection />
-      <KnowledgeSection />
-      <EducationSection />
-      <PortfolioSection />
-      <FooterSection />
-    </>
-  );
+      <div className="max-w-4xl mx-auto">
+        <ProfileSection />
+        <KnowledgeSection />
+        <EducationSection />
+        <PortfolioSection />
+        <FooterSection />
+      </div>
+  )
 }
