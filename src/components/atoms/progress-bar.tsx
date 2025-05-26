@@ -1,45 +1,54 @@
+// src/components/atoms/progress-bar.tsx
 "use client";
 
 import { useEffect, useState } from "react";
-import type * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { cn } from "@/lib/utils";
 
+export interface ProgressBarProps
+  extends Omit<React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>, "value"> {
+  /** Valor objetivo de progreso (0–100) */
+  value: number;
+  /** Anima la transición desde 0 hasta `value` */
+  animate?: boolean;
+  /** Clases para el track (fondo) */
+  className?: string;
+  /** Clases para el indicador (barra interior) */
+  indicatorClassName?: string;
+}
+
 export function ProgressBar({
   value,
+  animate = true,
   className,
   indicatorClassName,
-  animate = true,
-  ...props
-}: {
-  value: number;
-  animate?: boolean;
-} & React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>) {
-  const [progress, setProgress] = useState(0);
+  ...rootProps
+}: ProgressBarProps) {
+  // Estado interno para animar la barra
+  const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     if (animate) {
-      const timer = setTimeout(() => setProgress(value), 100);
-      return () => clearTimeout(timer);
+      // Actualiza displayValue después de un breve retardo
+      const timeout = setTimeout(() => setDisplayValue(value), 50);
+      return () => clearTimeout(timeout);
     } else {
-      setProgress(value);
+      setDisplayValue(value);
     }
   }, [value, animate]);
 
   return (
     <ProgressPrimitive.Root
-      className={cn(
-        "relative h-2 w-full overflow-hidden rounded-full bg-gray-800",
-        className
-      )}
-      {...props}
+      {...rootProps}
+      className={cn("relative h-2 w-full rounded-full bg-gray-800 overflow-hidden", className)}
+      value={displayValue} // Aunque Radix lo aplica, lo usaremos para aria
     >
       <ProgressPrimitive.Indicator
         className={cn(
-          "h-full w-full flex-1 bg-gradient-to-r from-cyan-400 to-fuchsia-500 transition-all duration-1000",
+          "h-full origin-left transition-[width] duration-500 ease-out",
           indicatorClassName
         )}
-        style={{ transform: `translateX(-${100 - progress}%)` }}
+        style={{ width: `${displayValue}%` }}
       />
     </ProgressPrimitive.Root>
   );

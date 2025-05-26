@@ -1,6 +1,7 @@
 "use client";
 
 import { projects } from "../../lib/data";
+import type { Project } from "../../lib/data"
 import { Heading } from "../atoms/heading";
 import { Text } from "../atoms/text";
 import { Card, CardContent } from "@/components/ui/card";
@@ -89,7 +90,7 @@ function ProjectCard({
   isActive,
   setActive,
 }: {
-  project: any;
+  project: Project;
   index: number;
   isActive: boolean;
   setActive: () => void;

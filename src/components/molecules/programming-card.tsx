@@ -1,40 +1,41 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { Heading } from "../atoms/heading"
-import { Text } from "../atoms/text"
-import { ProgressBar } from "../atoms/progress-bar"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Code2, ChevronDown, ChevronUp } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useRef } from "react";
+import { Heading } from "../atoms/heading";
+import { Text } from "../atoms/text";
+import { ProgressBar } from "../atoms/progress-bar";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Code2, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export function ProgrammingCard({ stacks }: { stacks: Array<{ name: string; percent: number }> }) {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [activeStack, setActiveStack] = useState<string | null>(null)
-  const [isInView, setIsInView] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+export function ProgrammingCard({
+  stacks,
+}: {
+  stacks: Array<{ name: string; percent: number }>;
+}) {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [activeStack, setActiveStack] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsInView(true)
+          setIsInView(true);
         }
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    observer.observe(node);
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
-      }
-    }
-  }, [])
+      observer.unobserve(node);
+    };
+  }, []);
 
   return (
     <Card
@@ -77,7 +78,9 @@ export function ProgrammingCard({ stacks }: { stacks: Array<{ name: string; perc
                     key={s.name}
                     className="space-y-2"
                     initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    animate={
+                      isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                    }
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                     onMouseEnter={() => setActiveStack(s.name)}
                     onMouseLeave={() => setActiveStack(null)}
@@ -108,19 +111,9 @@ export function ProgrammingCard({ stacks }: { stacks: Array<{ name: string; perc
                       </div>
                     </div>
                     <ProgressBar
-                      value={isInView ? s.percent : 0}
-                      className={cn(
-                        "h-3 bg-gray-800 rounded-md overflow-hidden",
-                        activeStack === s.name && "ring-1 ring-cyan-400",
-                      )}
-                      indicatorClassName={cn(
-                        index % 3 === 0
-                          ? "from-cyan-400 to-blue-500"
-                          : index % 3 === 1
-                            ? "from-fuchsia-400 to-purple-500"
-                            : "from-emerald-400 to-green-500",
-                        activeStack === s.name && "animate-pulse",
-                      )}
+                      value={s.percent}
+                      className="bg-gray-800"
+                      indicatorClassName="bg-gradient-to-r from-cyan-400 to-blue-500"
                     />
                   </motion.div>
                 ))}
@@ -130,5 +123,5 @@ export function ProgrammingCard({ stacks }: { stacks: Array<{ name: string; perc
         )}
       </AnimatePresence>
     </Card>
-  )
+  );
 }

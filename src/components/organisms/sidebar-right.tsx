@@ -1,17 +1,24 @@
 "use client"
 
-import { IconLink } from "../atoms/icon-link"
+import { IconLink, IconLinkVariant } from "../atoms/icon-link"
 import { Github, Linkedin, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
+type Social = {
+  icon: typeof Github | typeof Linkedin | typeof Mail
+  label: string
+  href: string
+  variant: IconLinkVariant
+}
+
 export default function SidebarRight() {
   const [activeIcon, setActiveIcon] = useState<number | null>(null)
 
-  const icons = [
-    { icon: Github, label: "GitHub", href: "https://github.com/santiagogracianod", variant: "neon" },
+  const icons: Social[] = [
+    { icon: Github,   label: "GitHub",   href: "https://github.com/santiagogracianod", variant: "neon" },
     { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/santiago-graciano-david/", variant: "neonPink" },
-    { icon: Mail, label: "Email", href: "mailto:santiago.gracianod@gmail.com", variant: "neonPink" },
+    { icon: Mail,     label: "Email",    href: "mailto:santiago.gracianod@gmail.com", variant: "neonPink" },
   ]
 
   return (
@@ -32,7 +39,12 @@ export default function SidebarRight() {
           }}
           transition={{ type: "spring", stiffness: 300, damping: 10 }}
         >
-          <IconLink href={icon.href} icon={icon.icon} label={icon.label} variant={icon.variant as any} />
+          <IconLink
+            href={icon.href}
+            icon={icon.icon}
+            label={icon.label}
+            variant={icon.variant}
+          />
         </motion.div>
       ))}
 
@@ -44,7 +56,7 @@ export default function SidebarRight() {
         }}
         transition={{
           duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
+          repeat: Infinity,
           ease: "easeInOut",
         }}
       />

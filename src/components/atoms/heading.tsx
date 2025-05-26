@@ -1,6 +1,6 @@
-import type React from "react";
-import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
+import type React from "react"
+import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority"
 
 const headingVariants = cva("font-bold tracking-tight text-white", {
   variants: {
@@ -26,12 +26,18 @@ const headingVariants = cva("font-bold tracking-tight text-white", {
     level: 1,
     variant: "default",
   },
-});
+})
 
-export interface HeadingProps extends VariantProps<typeof headingVariants> {
-  children: React.ReactNode;
-  className?: string;
-  dataText?: string;
+export interface HeadingProps
+  extends Omit<VariantProps<typeof headingVariants>, "level"> {
+  /** Encabezado h1…h6 */
+  level?: 1 | 2 | 3 | 4 | 5 | 6
+  /** Variedad de estilo definido en cva */
+  variant?: VariantProps<typeof headingVariants>["variant"]
+  children: React.ReactNode
+  className?: string
+  /** Sólo para glitch: texto que mostrará el efecto */
+  dataText?: string
 }
 
 export function Heading({
@@ -41,9 +47,10 @@ export function Heading({
   className,
   dataText,
 }: HeadingProps) {
-  const Tag = `h${level}` as const;
+  // Simple cast: h1..h6 filtered to a React element type
+  const Tag = (`h${level}`) as React.ElementType
   const attributes =
-    variant === "glitch" ? { "data-text": dataText || children } : {};
+    variant === "glitch" ? { "data-text": dataText || children } : {}
 
   return (
     <Tag
@@ -52,5 +59,5 @@ export function Heading({
     >
       {children}
     </Tag>
-  );
+  )
 }

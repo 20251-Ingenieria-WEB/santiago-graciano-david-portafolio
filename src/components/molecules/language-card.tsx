@@ -1,40 +1,41 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { Heading } from "../atoms/heading"
-import { Text } from "../atoms/text"
-import { ProgressBar } from "../atoms/progress-bar"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Globe, ChevronDown, ChevronUp } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "../../lib/utils"
+import { useState, useRef, useEffect } from "react";
+import { Heading } from "../atoms/heading";
+import { Text } from "../atoms/text";
+import { ProgressBar } from "../atoms/progress-bar";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Globe, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export function LanguageCard({ languages }: { languages: Array<{ name: string; percent: number }> }) {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [activeLanguage, setActiveLanguage] = useState<string | null>(null)
-  const [isInView, setIsInView] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+export function LanguageCard({
+  languages,
+}: {
+  languages: Array<{ name: string; percent: number }>;
+}) {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [activeLanguage, setActiveLanguage] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsInView(true)
+          setIsInView(true);
         }
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    observer.observe(node);
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
-      }
-    }
-  }, [])
+      observer.unobserve(node);
+    };
+  }, []);
 
   return (
     <Card
@@ -77,7 +78,9 @@ export function LanguageCard({ languages }: { languages: Array<{ name: string; p
                     key={l.name}
                     className="space-y-2"
                     initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    animate={
+                      isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                    }
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                     onMouseEnter={() => setActiveLanguage(l.name)}
                     onMouseLeave={() => setActiveLanguage(null)}
@@ -85,7 +88,9 @@ export function LanguageCard({ languages }: { languages: Array<{ name: string; p
                     <div className="flex justify-between items-center">
                       <Text
                         weight="medium"
-                        variant={activeLanguage === l.name ? "neonPink" : "default"}
+                        variant={
+                          activeLanguage === l.name ? "neonPink" : "default"
+                        }
                         className="transition-all duration-300"
                       >
                         {l.name}
@@ -93,7 +98,9 @@ export function LanguageCard({ languages }: { languages: Array<{ name: string; p
                       <div className="flex items-center gap-2">
                         <Text
                           size="xs"
-                          variant={activeLanguage === l.name ? "neonPink" : "muted"}
+                          variant={
+                            activeLanguage === l.name ? "neonPink" : "muted"
+                          }
                           className="transition-all duration-300"
                         >
                           {l.percent}%
@@ -113,18 +120,9 @@ export function LanguageCard({ languages }: { languages: Array<{ name: string; p
                       </div>
                     </div>
                     <ProgressBar
-                      value={isInView ? l.percent : 0}
-                      className={cn(
-                        "h-3 bg-gray-800 rounded-md overflow-hidden",
-                        activeLanguage === l.name && "ring-1 ring-fuchsia-400",
-                      )}
-                      indicatorClassName={
-                        l.percent >= 90
-                          ? "from-fuchsia-400 to-purple-500"
-                          : l.percent >= 70
-                            ? "from-cyan-400 to-blue-500"
-                            : "from-amber-400 to-orange-500"
-                      }
+                      value={l.percent}
+                      className="bg-gray-800"
+                      indicatorClassName="bg-gradient-to-r from-cyan-400 to-blue-500"
                     />
                   </motion.div>
                 ))}
@@ -134,5 +132,5 @@ export function LanguageCard({ languages }: { languages: Array<{ name: string; p
         )}
       </AnimatePresence>
     </Card>
-  )
+  );
 }

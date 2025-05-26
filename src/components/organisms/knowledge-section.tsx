@@ -3,6 +3,7 @@
 import type React from "react";
 
 import { knowledge } from "../../lib/data";
+import type { KnowledgeItem } from "../../lib/data"
 import { Heading } from "../atoms/heading";
 import { Text } from "../atoms/text";
 import { Card, CardContent } from "@/components/ui/card";
@@ -35,13 +36,13 @@ function KnowledgeCard({
   knowledge,
   index,
 }: {
-  knowledge: any;
+  knowledge: KnowledgeItem;
   index: number;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
   const particlesRef = useRef<
     Array<{ x: number; y: number; size: number; color: string; speed: number }>
   >([]);
@@ -200,9 +201,7 @@ function KnowledgeCard({
                 level={3}
                 variant={isHovered ? "neon" : "default"}
                 className="text-center mb-4 transition-all duration-300"
-                style={{
-                  transform: isHovered ? "translateZ(30px)" : "translateZ(0)",
-                }}
+               
               >
                 {knowledge.title}
               </Heading>
@@ -210,9 +209,7 @@ function KnowledgeCard({
               <Text
                 size="md"
                 className="text-center leading-relaxed transition-all duration-300"
-                style={{
-                  transform: isHovered ? "translateZ(20px)" : "translateZ(0)",
-                }}
+               
               >
                 {knowledge.description}
               </Text>

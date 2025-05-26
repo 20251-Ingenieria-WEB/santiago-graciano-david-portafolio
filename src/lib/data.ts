@@ -42,7 +42,7 @@ export const skills = [
   "Pensamiento crítico",
 ];
 
-type KnowledgeItem = {
+export type KnowledgeItem = {
   icon: LucideIcon;
   title: string;
   description: string;
@@ -89,8 +89,16 @@ export const education = [
   },
 ]
 
+export interface Project {
+  id: number
+  title: string
+  description: string
+  image?: string
+  url: string
+  tech?: string[]
+}
 
-export const projects = [
+export const projects: Project[] = [
   {
     id: 1,
     image: "/telconova.jpeg",

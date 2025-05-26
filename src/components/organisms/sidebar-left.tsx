@@ -1,15 +1,14 @@
-"use client"
-
-import Avatar from "../atoms/avatar"
-import { personal, languages, programming, skills } from "../../lib/data"
-import { Heading } from "../atoms/heading"
-import { Text } from "../atoms/text"
-import { ContactCard } from "../molecules/contact-card"
-import { LanguageCard } from "../molecules/language-card"
-import { ProgrammingCard } from "../molecules/programming-card"
-import { SkillList } from "../molecules/skill-list"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { motion } from "framer-motion"
+"use client";
+import Avatar from "../atoms/avatar";
+import { personal, languages, programming, skills } from "../../lib/data";
+import { Heading } from "../atoms/heading";
+import { Text } from "../atoms/text";
+import { ContactCard } from "../molecules/contact-card";
+import { LanguageCard } from "../molecules/language-card";
+import { ProgrammingCard } from "../molecules/programming-card";
+import { SkillList } from "../molecules/skill-list";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 export default function SidebarLeft() {
   return (
@@ -23,10 +22,14 @@ export default function SidebarLeft() {
         <div className="h-16 animated-gradient" />
         <CardContent className="pt-6 relative">
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
-            <Avatar src={personal.avatar} alt={personal.name} size={80} variant="neon" />
+            <Avatar
+              src={personal.avatar}
+              alt={personal.name}
+              variant="neon"
+              size={110} // Tamaño del avatar
+            />
           </div>
-
-          <div className="flex flex-col items-center mt-8">
+          <div className="flex flex-col items-center mt-8 py-6">
             <Heading level={2} variant="gradient" className="mb-1">
               {personal.name}
             </Heading>
@@ -37,8 +40,14 @@ export default function SidebarLeft() {
         </CardContent>
       </Card>
 
-      <ContactCard location={personal.location} phone={personal.phone} email={personal.email} />
+      <ContactCard
+        location={personal.location}
+        phone={personal.phone}
+        email={personal.email}
+      />
+
       <LanguageCard languages={languages} />
+
       <ProgrammingCard stacks={programming} />
 
       <Card className="border-gray-800 bg-gray-900 shadow-lg">
@@ -52,5 +61,5 @@ export default function SidebarLeft() {
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }
