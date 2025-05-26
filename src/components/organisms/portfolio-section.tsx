@@ -1,34 +1,35 @@
-"use client"
+"use client";
 
-import { projects } from "../../lib/data"
-import { Heading } from "../atoms/heading"
-import { Text } from "../atoms/text"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Code, Eye } from "lucide-react"
-import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { useState, useRef } from "react"
+import { projects } from "../../lib/data";
+import { Heading } from "../atoms/heading";
+import { Text } from "../atoms/text";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Code, Eye } from "lucide-react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
 
 export default function PortfolioSection() {
-  const [activeProject, setActiveProject] = useState<number | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const scrollToProject = (index: number) => {
-    if (!containerRef.current) return
+    if (!containerRef.current) return;
 
-    const projectElements = containerRef.current.querySelectorAll(".project-card")
+    const projectElements =
+      containerRef.current.querySelectorAll(".project-card");
     if (projectElements[index]) {
-      const containerLeft = containerRef.current.getBoundingClientRect().left
-      const projectLeft = projectElements[index].getBoundingClientRect().left
-      const scrollAmount = projectLeft - containerLeft - 40
+      const containerLeft = containerRef.current.getBoundingClientRect().left;
+      const projectLeft = projectElements[index].getBoundingClientRect().left;
+      const scrollAmount = projectLeft - containerLeft - 40;
 
       containerRef.current.scrollBy({
         left: scrollAmount,
         behavior: "smooth",
-      })
+      });
     }
-  }
+  };
 
   return (
     <motion.section
@@ -38,7 +39,11 @@ export default function PortfolioSection() {
       transition={{ duration: 0.6, delay: 0.4 }}
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
-        <Heading level={2} variant="gradient" className="mb-4 md:mb-0">
+        <Heading
+          level={2}
+          variant="gradient"
+          className="mb-4 md:mb-0 mx-auto text-center"
+        >
           Portafolio
         </Heading>
 
@@ -47,18 +52,23 @@ export default function PortfolioSection() {
             <button
               key={index}
               className={`w-3 h-3 rounded-full transition-all ${
-                activeProject === index ? "bg-cyan-400 w-6" : "bg-gray-700 hover:bg-gray-600"
+                activeProject === index
+                  ? "bg-cyan-400 w-6"
+                  : "bg-gray-700 hover:bg-gray-600"
               }`}
               onClick={() => {
-                setActiveProject(index)
-                scrollToProject(index)
+                setActiveProject(index);
+                scrollToProject(index);
               }}
             />
           ))}
         </div>
       </div>
 
-      <div ref={containerRef} className="flex gap-8 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
+      <div
+        ref={containerRef}
+        className="flex gap-8 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
+      >
         {projects.map((prj, index) => (
           <ProjectCard
             key={prj.id}
@@ -70,7 +80,7 @@ export default function PortfolioSection() {
         ))}
       </div>
     </motion.section>
-  )
+  );
 }
 
 function ProjectCard({
@@ -79,13 +89,13 @@ function ProjectCard({
   isActive,
   setActive,
 }: {
-  project: any
-  index: number
-  isActive: boolean
-  setActive: () => void
+  project: any;
+  index: number;
+  isActive: boolean;
+  setActive: () => void;
 }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [showDetails, setShowDetails] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <motion.div
@@ -94,8 +104,8 @@ function ProjectCard({
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onMouseEnter={() => {
-        setIsHovered(true)
-        setActive()
+        setIsHovered(true);
+        setActive();
       }}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -118,12 +128,18 @@ function ProjectCard({
             />
             <div
               className={`absolute inset-0 bg-gradient-to-t transition-opacity duration-500 ${
-                isHovered ? "from-black/80 to-black/40" : "from-black/60 to-transparent"
+                isHovered
+                  ? "from-black/80 to-black/40"
+                  : "from-black/60 to-transparent"
               }`}
             />
 
             <div className="absolute bottom-0 left-0 p-4 w-full">
-              <Heading level={3} variant={isHovered ? "neon" : "default"} className="mb-1 transition-all duration-300">
+              <Heading
+                level={3}
+                variant={isHovered ? "neon" : "default"}
+                className="mb-1 transition-all duration-300"
+              >
                 {project.title}
               </Heading>
 
@@ -142,7 +158,11 @@ function ProjectCard({
                         className="bg-black/50 border-cyan-400 text-cyan-400 hover:bg-cyan-400/20"
                         onClick={() => setShowDetails(!showDetails)}
                       >
-                        {showDetails ? <Code className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
+                        {showDetails ? (
+                          <Code className="w-4 h-4 mr-2" />
+                        ) : (
+                          <Eye className="w-4 h-4 mr-2" />
+                        )}
                         {showDetails ? "Ocultar" : "Detalles"}
                       </Button>
                       <Button
@@ -209,5 +229,5 @@ function ProjectCard({
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }

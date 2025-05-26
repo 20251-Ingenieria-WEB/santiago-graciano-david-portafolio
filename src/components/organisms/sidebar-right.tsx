@@ -9,10 +9,9 @@ export default function SidebarRight() {
   const [activeIcon, setActiveIcon] = useState<number | null>(null)
 
   const icons = [
-    { icon: Github, label: "GitHub", href: "https://github.com/usuario", variant: "neon" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/usuario", variant: "neonPink" },
-    { icon: Twitter, label: "Twitter", href: "https://twitter.com/usuario", variant: "neon" },
-    { icon: Mail, label: "Email", href: "mailto:santiago@example.com", variant: "neonPink" },
+    { icon: Github, label: "GitHub", href: "https://github.com/santiagogracianod", variant: "neon" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/santiago-graciano-david/", variant: "neonPink" },
+    { icon: Mail, label: "Email", href: "mailto:santiago.gracianod@gmail.com", variant: "neonPink" },
   ]
 
   return (
