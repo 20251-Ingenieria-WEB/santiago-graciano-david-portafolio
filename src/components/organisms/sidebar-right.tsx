@@ -1,7 +1,7 @@
 "use client"
 
 import { IconLink } from "../atoms/icon-link"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 

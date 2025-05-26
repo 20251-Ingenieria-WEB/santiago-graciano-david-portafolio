@@ -7,7 +7,7 @@ import Image from "next/image"
 import { Heading } from "../atoms/heading"
 import { Text } from "../atoms/text"
 import { Button } from "@/components/ui/button"
-import { Download, Code, Terminal, Sparkles } from "lucide-react"
+import { Download} from "lucide-react"
 import { personal } from "../../lib/data"
 import AboutMeModal from "../organisms/about-me-modal"
 

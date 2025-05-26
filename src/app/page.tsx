@@ -1,6 +1,5 @@
 "use client"
 
-import MainLayout from "../components/templates/main-layout"
 import ProfileSection from "../components/organisms/profile-section"
 import KnowledgeSection from "../components/organisms/knowledge-section"
 import EducationSection from "../components/organisms/education-section"
