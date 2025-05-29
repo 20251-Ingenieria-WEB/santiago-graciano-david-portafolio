@@ -70,7 +70,7 @@ Scripts útiles:
 
 El proyecto está desplegado en Vercel y puedes acceder a él en la siguiente URL:
 
-[hghfhgffhgfhg](https://santiago-graciano-david-portafolio.vercel.app/)
+[Ver Portafolio de Santiago Graciano David](https://santiago-graciano-david-portafolio.vercel.app/)
 
 ---
 
