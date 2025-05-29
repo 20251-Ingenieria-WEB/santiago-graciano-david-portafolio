@@ -1,6 +1,6 @@
-# Portafolio — Black Edition
+# Portafolio Santiago Graciano David Portafolio
 
-
+Este es el repositorio del portafolio personal de Santiago Graciano David, desarrollado con Next.js y Tailwind CSS.
 
 ---
 
@@ -39,9 +39,13 @@
 
 ## 🚀 Instalación local
 
+Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
+
+
 ```bash
 # 1 — Clona 
-$ cd mi‑portafolio
+$ git clone https://github.com/santiagogracianod/santiago-graciano-david-portafolio.git
+$ cd santiago-graciano-david-portafolio
 
 # 2 — Instala dependencias
 $ npm install
