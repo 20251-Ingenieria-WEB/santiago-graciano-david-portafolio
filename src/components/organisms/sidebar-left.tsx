@@ -22,7 +22,7 @@ export default function SidebarLeft() {
       <Card className="text-center border-gray-800 bg-gray-900 shadow-lg overflow-hidden">
         <div className="h-16 animated-gradient" />
         <CardContent className="pt-6 relative">
-          {/* Aquí envolvemos Avatar en un div redondo y con overflow-hidden */}
+          {/* envolvemos Avatar en un div redondo y con overflow-hidden */}
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 rounded-full overflow-hidden">
             <Avatar
               src={personal.avatar}

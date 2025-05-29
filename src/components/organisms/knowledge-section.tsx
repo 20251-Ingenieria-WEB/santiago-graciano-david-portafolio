@@ -47,7 +47,7 @@ function KnowledgeCard({
     Array<{ x: number; y: number; size: number; color: string; speed: number }>
   >([]);
 
-  // 3D card effect
+  // Valores de movimiento para el efecto 3D
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -78,7 +78,7 @@ function KnowledgeCard({
     y.set(0);
   }
 
-  // Particle effect
+  // Efecto hover para iniciar animacion de particulas
   useEffect(() => {
     if (!isHovered) {
       if (animationRef.current) {
@@ -87,7 +87,7 @@ function KnowledgeCard({
       return;
     }
 
-    // Create initial particles
+    // inicializar particulas
     particlesRef.current = Array.from({ length: 20 }).map(() => ({
       x: Math.random() * 300,
       y: Math.random() * 300,
@@ -96,7 +96,7 @@ function KnowledgeCard({
       speed: Math.random() * 1 + 0.5,
     }));
 
-    // Animation loop
+    // loop de animacion
     const animate = () => {
       if (!canvasRef.current || !isHovered) return;
 
@@ -105,7 +105,7 @@ function KnowledgeCard({
 
       ctx.clearRect(0, 0, 300, 300);
 
-      // Update particles
+      // actializacion de particulas
       particlesRef.current = particlesRef.current
         .map((p) => ({
           ...p,
@@ -126,7 +126,7 @@ function KnowledgeCard({
         });
       }
 
-      // Draw particles
+      // Dibujar particulas
       particlesRef.current.forEach((p) => {
         ctx.fillStyle = p.color;
         ctx.beginPath();
@@ -144,7 +144,7 @@ function KnowledgeCard({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isHovered, index]); // Removed particles from dependencies
+  }, [isHovered, index]); 
 
   return (
     <motion.div

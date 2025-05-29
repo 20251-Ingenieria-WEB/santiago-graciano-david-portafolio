@@ -41,7 +41,7 @@ export function ProgressBar({
     <ProgressPrimitive.Root
       {...rootProps}
       className={cn("relative h-2 w-full rounded-full bg-gray-800 overflow-hidden", className)}
-      value={displayValue} // Aunque Radix lo aplica, lo usaremos para aria
+      value={displayValue} 
     >
       <ProgressPrimitive.Indicator
         className={cn(

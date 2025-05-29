@@ -9,7 +9,6 @@ import { Menu, X }   from "lucide-react"
 import { motion }    from "framer-motion"
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  /* ---------- custom cursor (sin cambios) ---------- */
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const cursorRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -70,7 +69,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         >
           <X />
         </button>
-        <SidebarLeft />               {/* mismo contenido, scrollable */}
+        <SidebarLeft />              
       </motion.aside>
 
       {/* --------- GRID PRINCIPAL (sin overflow-hidden) --------- */}
