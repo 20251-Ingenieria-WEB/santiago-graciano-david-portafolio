@@ -66,6 +66,14 @@ Scripts útiles:
 
 ---
 
+## 🌐 Despliegue en Vercel
+
+El proyecto está desplegado en Vercel y puedes acceder a él en la siguiente URL:
+
+[https://santiago-graciano-david-portafolio.vercel.app/](https://santiago-graciano-david-portafolio.vercel.app/)
+
+---
+
 ## 📜 Licencia
 
 MIT © 2025 Santiago Graciano
