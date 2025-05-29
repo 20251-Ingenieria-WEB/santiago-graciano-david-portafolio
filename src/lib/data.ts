@@ -52,10 +52,10 @@ export const knowledge: KnowledgeItem[] = [
   {
     icon: Laptop,
     title: "Desarrollo Web",
-    description: "React, Next.js, Tailwind",
+    description: "React, Next.js, Tailwind, CSS, HTML, JavaScript, TypeScript",
   },
   { icon: Cloud, title: "Cloud Computing", description: "AWS, CI/CD" },
-  { icon: Server, title: "Desarrollo Backend", description: "PHP, Laravel" },
+  { icon: Server, title: "Desarrollo Backend", description: "PHP, Laravel, Java, NodeJS, Phyton" },
 ];
 
 export const education = [
